@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mdl_user extends CI_Model {
+
     public function addUser(){
         $arr["fitusername"]=$this->input->post('username');
         $arr["firuserrole"]="fitpageuser";

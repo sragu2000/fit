@@ -24,7 +24,7 @@
                         ${item.modulename}
                     </div>
                     <div class="card-footer">
-                        <a href="<?php echo base_url('view/module/module_${item.moduleid}');?>" class="btn btn-success form-control">
+                        <a href="<?php echo base_url('view/module/${item.moduleid}');?>" class="btn btn-success form-control">
                             <i class="fa-solid fa-book-open-reader"></i> &nbsp;
                             Read
                         </a>

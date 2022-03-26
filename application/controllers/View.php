@@ -13,8 +13,12 @@ class View extends CI_Controller {
 			redirect("authenticate/login");
 		}
 	}
+
+	//function call from vw_dashboard
+	//ex: http://localhost/fit/view/module/module_IN1400
+	//last part is a parameter to function module
 	public function module($courseId){
-        $courseId=str_replace('module_', '', $courseId);
+        //$courseId=str_replace('module_', '', $courseId);
         $this->load->view("vw_header");
         $this->load->view("vw_navbar");
         $data["courseId"]=$courseId;

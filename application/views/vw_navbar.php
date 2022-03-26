@@ -4,13 +4,14 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active btn btn-dark text-white" href="<?php echo base_url('module/addarticles');?>"><i class="fas fa-plus"></i>&nbsp;Add Articles</a>
+        </li>
         <!-- <li class="nav-item">
-          <a class="nav-link active" href="<?php //echo base_url('dashboard'); ?>"><i class="fas fa-toolbox"></i>&nbsp;Dashboard</a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#"><i class="far fa-clipboard"></i>&nbsp;Exam</a>
+          <a class="nav-link" href="#"><i class="far fa-clipbsoard"></i>&nbsp;Exam</a>
         </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="#"><i class="far fa-id-badge"></i>&nbsp;Score</a>
@@ -34,12 +35,14 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button> &nbsp;&nbsp;
       </form> -->
-      <form class="d-flex">
+      
         <a class="btn btn-outline-danger" href="<?php echo base_url('dashboard/logout');?>"><i class="fas fa-power-off"></i> &nbsp;Logout</a>
-      </form>
+     
     </div>
   </div>
 </nav>
-<!-- <div class="bg-dark text-light">&nbsp;&nbsp;<strong>
-  <?php //echo "Welcome, ".$userDataFromModel->fullname; ?>
-</strong></div> -->
+<div class="bg-dark text-light">&nbsp;&nbsp;
+  <strong>
+    <?php echo "Welcome, ", $_SESSION["useroffit"] ?>
+  </strong>
+</div>
