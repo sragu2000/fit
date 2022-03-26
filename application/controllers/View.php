@@ -24,4 +24,11 @@ class View extends CI_Controller {
         $data["courseId"]=$courseId;
         $this->load->view("courses/vw_module",$data);
     }
+
+	public function myarticles(){
+		$this->load->view("vw_header");
+        $this->load->view("vw_navbar");
+		$this->load->view("vw_myarticles");
+	}
+
 }
