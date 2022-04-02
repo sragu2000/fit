@@ -16,7 +16,7 @@
     // fetUrl+=a[0]["id"];
     // console.log(fetUrl);
     $("#heading").val(a[0]["heading"]);
-    $("#articletext").val(a[0]["lesson"]);
+    $("#articletext").val(decodeURIComponent(a[0]["lesson"]));
     $(document).on("submit","#updateArticle",(e)=>{
         e.preventDefault();
         var toServer=new FormData();

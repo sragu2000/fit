@@ -23,8 +23,7 @@ class Articles extends CI_Controller {
         $this->load->view("vw_header");
         $this->load->view("vw_navbar");
         $arr["articleid"]=$articleid;
-        $this->load->view("vw_readarticles",$arr);
-        
+        $this->load->view("vw_readarticles",$arr); 
     }
     public function postRead($articleid){
         echo $this->Mdl_articles->getOneArticle($articleid);

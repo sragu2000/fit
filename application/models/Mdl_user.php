@@ -32,6 +32,24 @@ class Mdl_user extends CI_Model {
         }
     }
 
+    public function getprofile(){
+        $indnum=$this->session->userdata('useroffit');
+        $val=$this->db->query("select fitusername as name, fituseremail as email, fituserindexnum as indnum, fitusercourse as course from usersfit where fituserindexnum='$indnum'")->result();
+        return json_encode($val,true);
+    }
+
+    public function deleteusermdl(){
+        $ind=$this->session->userdata('useroffit');
+        $this->db->query("delete from usersfit where fituserindexnum='$ind'");
+        return true;
+    }
+
+    public function getUserRole(){
+        $ind=$this->session->userdata('useroffit');
+        $val=$this->db->query("select * from usersfit where fituserindexnum='$ind'")->first_row()->firuserrole;
+        return $val;
+    }
+
     public function sessionCheck(){
         $session_data = $this->session->get_userdata();
         if (is_null($session_data)) {

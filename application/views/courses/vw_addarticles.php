@@ -1,6 +1,6 @@
 <br>
 <div class="container">
-    <form id="submitArticle" method="get">
+    <form id="submitArticle" method="post">
         <input type="text" class="form-control" id="heading" placeholder="Heading"><p></p>
         <p></p>
         <select class="form-control" id="course">
@@ -29,7 +29,8 @@
         var toServer=new FormData();
         toServer.append('heading',$("#heading").val());
         toServer.append('module',$("#course").val());
-        toServer.append('articletext',$("#articletext").val());
+        toServer.append('articletext',encodeURIComponent($("#articletext").val()));
+        console.log(encodeURIComponent($("#articletext").val()));
         fetch("<?php echo base_url('module/submitarticle');?>",{method:'POST',body: toServer,mode: 'no-cors',cache: 'no-cache'})
         .then(async response => {
             try {

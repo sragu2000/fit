@@ -15,8 +15,13 @@ class Dashboard extends CI_Controller {
 	}
 	public function index()
 	{
+		$role=$this->Mdl_user->getUserRole();
 		$this->load->view("vw_header");
 		$this->load->view("vw_navbar");
+		if($role=="fitpageadmin"){
+
+			$this->load->view("vw_admincontrolpanel");
+		}
 		$this->load->view('vw_dashboard');
 	}
 
@@ -27,5 +32,27 @@ class Dashboard extends CI_Controller {
 	public function logout(){
 		$this->session->unset_userdata("useroffit");
 		redirect("authenticate");
+	}
+
+	public function viewuserdetails(){
+		$this->load->view("vw_header");
+		$this->load->view("vw_navbar");
+		$data["user"]=$this->session->userdata("useroffit");
+		$this->load->view("vw_usersettings",$data);
+	}
+
+	public function getuserprofile(){
+		echo $this->Mdl_user->getprofile();
+	}
+
+	public function deleteuser(){
+		$a=$this->Mdl_user->deleteusermdl();
+		if($a){
+			echo "<script>alert('Account Deleted Sucessfully')</script>";
+			$this->logout();
+		}else{
+			echo "<script>alert('Try Again..')</script>";
+		}
+		
 	}
 }

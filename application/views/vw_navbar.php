@@ -9,10 +9,16 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active btn btn-dark text-white" href="<?php echo base_url('module/addarticles');?>"><i class="fas fa-plus"></i>&nbsp;Add Articles</a>
-        </li>&nbsp;
+        </li>
+        &nbsp;
         <li class="nav-item">
           <a class="nav-link active btn btn-dark text-white" href="<?php echo base_url('view/myarticles');?>">
           <i class="fa-solid fa-file-signature"></i></i>&nbsp;My Articles</a>
+        </li>
+        &nbsp;
+        <li class="nav-item">
+          <a class="nav-link active btn btn-dark text-white" href="<?php echo base_url('dashboard/viewuserdetails');?>">
+          <i class="fa-solid fa-gear"></i></i></i>&nbsp;My Account</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="#"><i class="far fa-clipbsoard"></i>&nbsp;Exam</a>
