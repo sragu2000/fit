@@ -45,6 +45,6 @@
     });
     function share(aid){
         var wpurl="https://wa.me/?text="+"<?php echo base_url('articles/readarticle/')?>"+aid;
-        console.log(wpurl);
+	location.href=wpurl;
     }
 </script>
