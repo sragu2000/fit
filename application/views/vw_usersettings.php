@@ -6,9 +6,15 @@
     Index Number : <input type="text" disabled id="index" class="form-control"><p></p>
     E-Mail : <input type="text" disabled id="email" class="form-control"><p></p>
     Course : <input type="text" disabled id="course" class="form-control"><p></p>
-    <a href="<?php echo base_url('dashboard/deleteuser');?>" id="del" class="btn btn-danger form-control btn-lg"><i class="fa-solid fa-user-xmark"></i> DELETE MY ACCOUNT</a>
+    <a id="del" class="btn btn-danger form-control btn-lg"><i class="fa-solid fa-user-xmark"></i> DELETE MY ACCOUNT</a>
 </div>
 <script>
+    $(document).on("click","#del",()=>{
+        if(confirm("Are you sure you want to delete this account ?")){
+            location.href="<?php echo base_url('dashboard/deleteuser')?>";
+        }
+    });
+
     var user="<?php echo $user; ?>";
     fetch("<?php echo base_url('dashboard/getuserprofile')?>",{method:'GET',mode: 'no-cors',cache: 'no-cache'})
     .then(response => {
