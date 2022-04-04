@@ -1,6 +1,6 @@
 <br><br>
 <div class="container">
-    <a href="" class="btn btn-outline-primary btn-lg form-control"><i class="fa-solid fa-circle-plus"></i> Create Module</a>
+    <button type="button" id="createModule" class="btn btn-outline-primary btn-lg form-control"><i class="fa-solid fa-circle-plus"></i> Create Module</button>
     <hr width="100%">
     <h3>Available Courses</h3>
     <hr width="100%">
@@ -60,6 +60,28 @@
             } else {
                 swal("Your Module is safe!");
             }
-            });
+        });
     }
+    
+    $(document).on("click","#createModule",()=>{
+        var modulename, moduleid, forcourse;
+        modulename=prompt("Enter Module Name : ")
+        moduleid=prompt("Enter Module ID : ")
+        forcourse=prompt("For Course(IT or ITM or BOTH) : ")
+        var text="Module Name : "+modulename+"\nModule ID : "+moduleid+"\nFor Course : "+forcourse;
+        if(confirm(text+"\nDo you want to Create Module ?")){
+            var addurl="<?php echo base_url('admin/createModule/')?>"+modulename+"/"+moduleid+"/"+forcourse
+            $.getJSON(addurl, function(data) {
+                if (data.result==true){
+                    alert("Module Created");
+                    window.location.reload();
+                }else{
+                    alert("Module Failed");
+                }
+            });
+        }else{
+            alert("Module Creation Cancelled");
+        }
+    })
 </script>
+

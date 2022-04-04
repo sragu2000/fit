@@ -45,4 +45,16 @@ class Mdl_admin extends CI_Model {
         }
     }
 
+    public function createThisModule($modulename, $moduleid, $forcourse){
+        if($this->db->query("select * from fitmodules where moduleid='$moduleid'")->num_rows()>0){
+            return false;
+        }else{
+            if($this->db->query("insert into fitmodules(moduleid,modulename,forcourse) values('$moduleid','$modulename','$forcourse')")){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }   
+
 }

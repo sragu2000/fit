@@ -62,4 +62,13 @@ class Admin extends CI_Controller {
 			echo "<script> alert('Error'); </script>";
 		}
 	}
+
+	public function createModule($modulename, $moduleid, $forcourse){
+		$flag=$this->Mdl_admin->createThisModule(urldecode($modulename), urldecode($moduleid), urldecode($forcourse));
+		if($flag){
+			$this->sendJson(array("message"=>"Success", "result"=>true));
+		}else{
+			$this->sendJson(array("message"=>"Success", "result"=>false));
+		}
+	}
 }
