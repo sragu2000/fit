@@ -73,11 +73,17 @@
         modulename=prompt("Enter Module Name : ")
         if(modulename != null && modulename.trim()!=""){
             moduleid=prompt("Enter Module ID : ")
+        }else{
+            alert("Module Name cannot be blank");
+            return 0;
         }
-        else if(moduleid != null  && moduleid.trim()!=""){
+        if(moduleid != null  && moduleid.trim()!=""){
             forcourse=prompt("For Course(IT or ITM or BOTH) : ")
+        }else{
+            alert("Module ID cannot be blank");
+            return 0;
         }
-        else if(forcourse != null && forcourse.trim()!=""){
+        if(forcourse != null && forcourse.trim()!=""){
             var text="Module Name : "+modulename+"\nModule ID : "+moduleid+"\nFor Course : "+forcourse;
             if(confirm(text+"\nDo you want to Create Module ?")){
                 var addurl="<?php echo base_url('admin/createModule/')?>"+modulename+"/"+moduleid+"/"+forcourse
@@ -93,7 +99,8 @@
                 alert("Module Creation Cancelled");
             }
         }else{
-            alert("Inputs cannot be blank");
+            alert("For Course cannot be blank");
+            return 0;
         }
     })
 </script>
