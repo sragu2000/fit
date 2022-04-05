@@ -46,29 +46,38 @@ class Admin extends CI_Controller {
 	public function deleteModule($moduleId){
 		$flag=$this->Mdl_admin->deleteThisModule($moduleId);
 		if($flag){
-			echo "<script> alert('Module Deleted Successfully'); </script>";
-			redirect("admin/manageModule");
+			$this->sendJson(array("message"=>"Success", "result"=>true));
 		}else{
-			echo "<script> alert('Error'); </script>";
+			$this->sendJson(array("message"=>"Failed", "result"=>false));
 		}
 	}
 
 	public function editModule($oldmoduleid, $modulename, $moduleid, $forcourse){
-		$flag=$this->Mdl_admin->editThisModule(urldecode($oldmoduleid), urldecode($modulename), urldecode($moduleid), urldecode($forcourse));
-		if($flag){
-			echo "<script> alert('Module Edited Successfully'); </script>";
-			redirect("admin/manageModule");
+		if(!(empty(trim($oldmoduleid)) && empty(trim($modulename)) && empty(trim($moduleid)) && empty(trim($forcourse)))){
+			$flag=$this->Mdl_admin->editThisModule(urldecode($oldmoduleid), urldecode($modulename), urldecode($moduleid), urldecode($forcourse));
+			if($flag){
+				$this->sendJson(array("message"=>"Success", "result"=>true));
+			}else{
+				$this->sendJson(array("message"=>"Failed", "result"=>false));
+			}
 		}else{
-			echo "<script> alert('Error'); </script>";
+			$this->sendJson(array("message"=>"Inputs cannot be blank", "result"=>false));
 		}
+		
 	}
 
 	public function createModule($modulename, $moduleid, $forcourse){
-		$flag=$this->Mdl_admin->createThisModule(urldecode($modulename), urldecode($moduleid), urldecode($forcourse));
-		if($flag){
-			$this->sendJson(array("message"=>"Success", "result"=>true));
+		if(!(empty(trim($moduleid))  && empty(trim($modulename)) && empty(trim($forcourse)))){
+			$moduleid=preg_replace('/\s+/', '', urldecode($moduleid));
+			$flag=$this->Mdl_admin->createThisModule(urldecode($modulename), urldecode($moduleid), urldecode($forcourse));
+			if($flag){
+				$this->sendJson(array("message"=>"Success", "result"=>true));
+			}else{
+				$this->sendJson(array("message"=>"Failed", "result"=>false));
+			} 
 		}else{
-			$this->sendJson(array("message"=>"Success", "result"=>false));
+			$this->sendJson(array("message"=>"Inputs cannot be blank", "result"=>false));
 		}
+		
 	}
 }

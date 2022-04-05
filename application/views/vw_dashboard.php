@@ -32,7 +32,7 @@
                 </div>
             </div>
             `;
-            if(item.forcourse=="BOTH"){
+            if((item.forcourse).toLowerCase()==("BOTH").toLowerCase()){
                 $("#both").append(htmlText);
             }
             if(item.forcourse=="IT"){

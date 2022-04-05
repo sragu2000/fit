@@ -28,59 +28,72 @@
             
         });
     });
+
     function editModule(moduleID,moduleName,forcourse){
         let newCourseName = prompt("Module Name : ", moduleName);
-        let newCourseID = prompt("Module ID : ", moduleID);
-        let newCourse = prompt("For Course(IT or ITM or BOTH) : ", forcourse);
-        swal({
-            title: "Are you sure to edit ?",
-            text: "New Course Name : "+newCourseName+"\nNew Course ID : "+newCourseID+"\nFor Course : "+newCourse,
-            icon: "warning",buttons: true,dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                location.href="<?php echo base_url('admin/editModule/'); ?>"+moduleID+"/"+newCourseName+"/"+newCourseID+"/"+newCourse;
-                swal("Module Edited",{icon: "success",});
-            } else {
-                swal("Your Module is safe!");
-            }
-        });
-    }
-    function deleteModule(moduleID){
-        swal({
-            title: "Are you sure to delete? Once deleted, It can't be undone. Articles related to the module willbe also deleted.",
-            icon: "warning",buttons: true,dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                location.href="<?php echo base_url('admin/deleteModule/'); ?>"+moduleID;
-                swal("Module Deleted",{
-                icon: "success",
+        var newCourseID,newCourse;
+        if(newCourseName != null && newCourseName.trim()!=""){
+            newCourseID = prompt("Module ID : ", moduleID);
+        }
+        if(newCourseID != null && newCourseID.trim()!=""){
+            newCourse = prompt("For Course(IT or ITM or BOTH) : ", forcourse);
+        }
+        if(newCourse != null && newCourse.trim()!=""){
+            if(confirm("New Course Name : "+newCourseName+"\nNew Course ID : "+newCourseID+"\nFor Course : "+newCourse)){
+                var urltext="<?php echo base_url('admin/editModule/'); ?>"+moduleID+"/"+newCourseName+"/"+newCourseID+"/"+newCourse;
+                $.getJSON(urltext, function(data) {
+                    if (data.result==true){
+                        alert("Module Edited Successfully!");
+                        window.location.reload();
+                    }else{
+                        alert("Module Editing Failed ");
+                    }
                 });
-            } else {
-                swal("Your Module is safe!");
             }
-        });
+        }
+        
+    }
+
+    function deleteModule(moduleID){
+        if(confirm("Are you sure to delete?")){
+            var urltext="<?php echo base_url('admin/deleteModule/'); ?>"+moduleID;
+            $.getJSON(urltext, function(data) {
+                if (data.result==true){
+                    alert("Module deleted Successfully!");
+                    window.location.reload();
+                }else{
+                    alert("Cannot delete module");
+                }
+            });
+        }
     }
     
     $(document).on("click","#createModule",()=>{
         var modulename, moduleid, forcourse;
         modulename=prompt("Enter Module Name : ")
-        moduleid=prompt("Enter Module ID : ")
-        forcourse=prompt("For Course(IT or ITM or BOTH) : ")
-        var text="Module Name : "+modulename+"\nModule ID : "+moduleid+"\nFor Course : "+forcourse;
-        if(confirm(text+"\nDo you want to Create Module ?")){
-            var addurl="<?php echo base_url('admin/createModule/')?>"+modulename+"/"+moduleid+"/"+forcourse
-            $.getJSON(addurl, function(data) {
-                if (data.result==true){
-                    alert("Module Created");
-                    window.location.reload();
-                }else{
-                    alert("Module Failed");
-                }
-            });
+        if(modulename != null && modulename.trim()!=""){
+            moduleid=prompt("Enter Module ID : ")
+        }
+        else if(moduleid != null  && moduleid.trim()!=""){
+            forcourse=prompt("For Course(IT or ITM or BOTH) : ")
+        }
+        else if(forcourse != null && forcourse.trim()!=""){
+            var text="Module Name : "+modulename+"\nModule ID : "+moduleid+"\nFor Course : "+forcourse;
+            if(confirm(text+"\nDo you want to Create Module ?")){
+                var addurl="<?php echo base_url('admin/createModule/')?>"+modulename+"/"+moduleid+"/"+forcourse
+                $.getJSON(addurl, function(data) {
+                    if (data.result==true){
+                        alert("Module Created");
+                        window.location.reload();
+                    }else{
+                        alert("Module Failed : "+data.message);
+                    }
+                });
+            }else{
+                alert("Module Creation Cancelled");
+            }
         }else{
-            alert("Module Creation Cancelled");
+            alert("Inputs cannot be blank");
         }
     })
 </script>
