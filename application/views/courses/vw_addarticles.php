@@ -6,7 +6,8 @@
         <select class="form-control" id="course">
             <option value="" disabled selected>Select Module here..</option>
         </select>
-        <p></p>
+        <p></p> 
+        <div id="editor-container" style="height:375px;"></div>
         <textarea id="articletext" rows="10" cols="100" placeholder="Your Text here..." class="form-control"></textarea>
         <p></p>
         <input type="submit" class="btn btn-lg- btn-outline-success form-control"><p></p>
@@ -52,5 +53,16 @@
             console.log(e);
             alert("Reloading");
         });
+    });
+    var quill = new Quill('#editor-container', {
+        modules: {
+            toolbar: [
+            [{ header: [1, 2, false] }],
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block']
+            ]
+        },
+        placeholder: 'Compose an epic...',
+        theme: 'snow'  // or 'bubble'
     });
 </script>
