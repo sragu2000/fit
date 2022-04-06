@@ -8,7 +8,7 @@
     var urlText="<?php echo base_url('module/showArticles/').$courseId;?>"
     $.getJSON(urlText, function(data) {
         data.forEach(function(item){
-            item.lesson = decodeURIComponent(item.lesson);
+            item.lesson = item.lesson;
             textURL="<?php echo base_url('articles/readarticle/')?>"+item.aid;
             var htmlText=`
                 <div class="card">

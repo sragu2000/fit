@@ -27,10 +27,11 @@ class Mdl_articles extends CI_Model {
     }
 
     public function updateOneArticle(){
-        $heading=$this->input->post('heading');
-        $articletext=$this->input->post('articletext');
+        $arr["articleheading"]=$this->input->post('heading');
+        $arr["articletext"]=$this->input->post('articletext');
         $aid=$this->input->post('aid');
-        if($this->db->query("update fitarticles set articletext='$articletext' , articleheading='$heading' where articleid='$aid'")){
+        $this->db->where('articleid',$aid);
+        if($this->db->update('fitarticles',$arr)){
             return array("message"=>"Update Success","result"=>true);
         }else{
             return array("message"=>"Update Failed","result"=>false);

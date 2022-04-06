@@ -1,29 +1,58 @@
 <br>
 <div class="container">
     <form id="updateArticle" method="POSt">
-        <input type="text" class="form-control" id="heading" placeholder="Heading"><p></p>
+        <input type="text" class="form-control" id="heading" placeholder="Heading" required><p></p>
         <p></p>
-        <textarea id="articletext" rows="10" cols="100" placeholder="Your Text here..." class="form-control"></textarea>
+        <div id="toolbar"></div>
+        <div id="editor"></div>
         <p></p>
         <input type="submit" class="btn btn-lg- btn-outline-success form-control"><p></p>
         <input type="reset" class="btn btn-lg- btn-outline-warning form-control">
     </form>
 </div>
 <script>
-    var a=<?php echo $articledata; ?>;
-    // console.log(a[0]);
-    // var fetUrl="<?php //echo base_url('articles/postUpdate/');?>";
-    // fetUrl+=a[0]["id"];
-    // console.log(fetUrl);
-    $("#heading").val(a[0]["heading"]);
-    $("#articletext").val(decodeURIComponent(a[0]["lesson"]));
+    var toolbarOptions =[
+        [{ header: [1, 2, false] }],
+        ['bold', 'italic', 'underline','strike'],
+        [ 'blockquote','code-block'],
+        [{'list':'ordered'},{'list':'bullet'}],
+        [{'script':'sub'},{'script':'super'}],
+        ['link','formula','image'],
+        [{'color':[]},{'background':[]}],
+        [{'font':[]}],
+        [{'align':[]}],
+    ];
+    var quill = new Quill('#editor', {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        placeholder: 'Type Your Text Here...',
+        theme: 'snow'
+    });
+
+    var articleid=<?php echo $articleid; ?>;
+    fetch("<?php echo base_url('articles/fetchArticle/')?>"+articleid,{method:'GET',mode: 'no-cors',cache: 'no-cache'})
+    .then(response => {
+        if (response.status == 200) {return response.json();}
+        else {console.log('Backend Error..!');console.log(response.text());}
+    })
+    .then(data => {
+        if (data.length>0) {
+            data.forEach(function(item){
+                $("#heading").val(item.heading);
+                item.lesson =JSON.parse(item.lesson);
+                quill.setContents(item.lesson);
+            });
+        }
+    })
+    .catch((e) => {console.log(e);});
+
     $(document).on("submit","#updateArticle",(e)=>{
         e.preventDefault();
         var toServer=new FormData();
         toServer.append('heading',$("#heading").val());
-        toServer.append('articletext',$("#articletext").val());
-        toServer.append('aid',a[0]["id"]);
-        console.log(toServer);
+        toServer.append('articletext',JSON.stringify(quill.getContents()));
+        toServer.append('aid',articleid);
         fetch("<?php echo base_url('articles/postupdate')?>",{method:'POST',body: toServer,mode: 'no-cors',cache: 'no-cache'})
         .then(async response => {
             try {

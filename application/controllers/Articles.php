@@ -29,9 +29,9 @@ class Articles extends CI_Controller {
         echo $this->Mdl_articles->getOneArticle($articleid);
     }
     public function editarticle($articleid){
-        $data["articledata"]=$this->Mdl_articles->getOneArticle($articleid);
         $this->load->view("vw_header");
         $this->load->view("vw_navbar");
+        $data["articleid"]=$articleid;
         $this->load->view("vw_updatearticles",$data);
     }
     //from vw_updatearticles
@@ -52,5 +52,9 @@ class Articles extends CI_Controller {
 
     private function sendJson($data) {
         $this->output->set_header('Content-Type: application/json; charset=utf-8')->set_output(json_encode($data));
+    }
+
+    public function fetchArticle($num){
+        echo $this->Mdl_articles->getOneArticle($num);;
     }
 }
