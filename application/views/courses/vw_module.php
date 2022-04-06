@@ -9,15 +9,14 @@
     $.getJSON(urlText, function(data) {
         data.forEach(function(item){
             item.lesson = decodeURIComponent(item.lesson);
+            textURL="<?php echo base_url('articles/readarticle/')?>"+item.aid;
             var htmlText=`
                 <div class="card">
                     <div class="card-header">
                         <h3>${item.heading}</h3><i class="fa-solid fa-file-pen"></i> ${item.user}
                     </div>
                     <div class="card-body">
-                        <button type="button" class="btn form-control btn-outline-dark" data-bs-toggle="collapse" data-bs-target="#d${item.aid}"><i class="fa-solid fa-book-open"></i> &nbsp; Read More..</button>
-			            <p></p>
-                        <div id="d${item.aid}" class="collapse">${item.lesson}</div>   
+                        <a href="${textURL}" class="btn form-control btn-outline-dark" target="_blank"><i class="fa-solid fa-book-open"></i> &nbsp; Read More..</a>
                     </div>
                     <div class="card-footer">
                         <div class="row">

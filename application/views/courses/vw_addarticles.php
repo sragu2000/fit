@@ -7,8 +7,9 @@
             <option value="" disabled selected>Select Module here..</option>
         </select>
         <p></p> 
-        <div id="editor-container" style="height:375px;"></div>
-        <textarea id="articletext" rows="10" cols="100" placeholder="Your Text here..." class="form-control"></textarea>
+
+        <div id="toolbar"></div>
+        <div id="editor" style="height:375px;"></div>
         <p></p>
         <input type="submit" class="btn btn-lg- btn-outline-success form-control"><p></p>
         <input type="reset" class="btn btn-lg- btn-outline-warning form-control">
@@ -30,8 +31,7 @@
         var toServer=new FormData();
         toServer.append('heading',$("#heading").val());
         toServer.append('module',$("#course").val());
-        toServer.append('articletext',encodeURIComponent($("#articletext").val()));
-        console.log(encodeURIComponent($("#articletext").val()));
+        toServer.append('articletext',JSON.stringify(quill.getContents()));
         fetch("<?php echo base_url('module/submitarticle');?>",{method:'POST',body: toServer,mode: 'no-cors',cache: 'no-cache'})
         .then(async response => {
             try {
@@ -54,15 +54,24 @@
             alert("Reloading");
         });
     });
-    var quill = new Quill('#editor-container', {
+    
+
+    var toolbarOptions =[
+        [{ header: [1, 2, false] }],
+        ['bold', 'italic', 'underline','strike'],
+        [ 'blockquote','code-block'],
+        [{'list':'ordered'},{'list':'bullet'}],
+        [{'script':'sub'},{'script':'super'}],
+        ['link','formula','image'],
+        [{'color':[]},{'background':[]}],
+        [{'font':[]}],
+        [{'align':[]}],
+    ];
+    var quill = new Quill('#editor', {
         modules: {
-            toolbar: [
-            [{ header: [1, 2, false] }],
-            ['bold', 'italic', 'underline'],
-            ['image', 'code-block']
-            ]
+            toolbar: toolbarOptions
         },
-        placeholder: 'Compose an epic...',
-        theme: 'snow'  // or 'bubble'
+        placeholder: 'Type Your Text Here...',
+        theme: 'snow'
     });
 </script>
