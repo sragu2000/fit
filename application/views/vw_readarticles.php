@@ -2,7 +2,7 @@
 <style>
 img {
     max-width: 100%;
-    hegiht: auto;
+    height: auto;
 }
 </style>
 <div class="container" id="target">

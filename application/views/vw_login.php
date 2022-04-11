@@ -66,7 +66,12 @@
                     document.getElementById("result").innerHTML="";
                     var htmltext=`<div class="alert alert-success" role="alert">${data.message}</div>`;
                     $("#result").append(htmltext);
-                    location.href="<?php echo base_url('dashboard'); ?>";
+                    if(data.url==null){
+                        location.href="<?php echo base_url('dashboard'); ?>";
+                    }else{
+                        location.href=data.url;
+                    }
+                    
                 }else{
                     document.getElementById("result").innerHTML="";
                     var htmltext=`<div class="alert alert-danger" role="alert">${data.message}</div>`;

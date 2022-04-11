@@ -10,9 +10,9 @@ class Articles extends CI_Controller {
 		$this->load->model('Mdl_user');
 		$this->load->model('Mdl_courses');
         $this->load->model('Mdl_articles');
-		if(! $this->Mdl_user->sessionCheck()){
-            // $pageUrl=current_url();
-            // $this->session->set_userdata('myurl',$pageUrl);
+		if(!$this->Mdl_user->sessionCheck()){
+            $pageUrl=current_url();
+            $this->session->set_userdata('myurl',$pageUrl);
 			redirect("authenticate/login");
 		}
 	}

@@ -29,15 +29,9 @@ class Authenticate extends CI_Controller {
 		$flag=$this->Mdl_user->checkuser();
 		if($flag["result"]){
 			$this->session->set_userdata("useroffit",$this->input->post('indnum'));
-			// if($this->session->userdata('myurl')){
-			// 	redirect($this->session->userdata('myurl'));
-			// 	$this->session->unset_userdata("myurl");
-			// }else{
-			// 	redirect("dashboard");
-			// }
 		}
-		$this->sendJson(array("message"=>$flag["message"],"result"=>$flag["result"]));
-		
+		$this->sendJson(array("message"=>$flag["message"],"result"=>$flag["result"],"url"=>$this->session->userdata('myurl')));
+		$this->session->unset_userdata("myurl");
 	}
 	public function signupuser(){
 		$flag=$this->Mdl_user->addUser();
