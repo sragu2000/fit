@@ -1,11 +1,12 @@
 <br>
 <div class="container">
     <form id="submitArticle" method="post">
-        <input type="text" class="form-control" id="heading" placeholder="Heading"><p></p>
-        <p></p>
         <select class="form-control" id="course">
             <option value="" disabled selected>Select Module here..</option>
         </select>
+        <p></p>
+        <input type="text" class="form-control" id="heading" placeholder="Heading"><p></p>
+        
         <p></p> 
 
         <div id="toolbar"></div>
