@@ -8,6 +8,15 @@ class Mdl_articles extends CI_Model {
         return json_encode($flag,true);
     }
 
+    public function canUserEditThisArticle($articleid){
+        $val=$this->db->query("SELECT * FROM fitarticles WHERE articleid='$articleid'")->first_row()->authorid;
+        if ($val==$_SESSION['useroffit']){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function getOneArticle($aid){
         $res=$this->db->query("select articleid as id, adate as date, articleheading as heading, articletext as lesson from fitarticles where articleid='$aid'")->result();
         return json_encode($res,true);        

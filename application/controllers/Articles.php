@@ -33,13 +33,24 @@ class Articles extends CI_Controller {
     public function editarticle($articleid){
         $this->load->view("vw_header");
         $this->load->view("vw_navbar");
-        $data["articleid"]=$articleid;
-        $this->load->view("vw_updatearticles",$data);
+        $canUserEdit=$this->Mdl_articles->canUserEditThisArticle($articleid);
+        if($canUserEdit){
+            $data["articleid"]=$articleid;
+            $this->load->view("vw_updatearticles",$data);
+        }else{
+            $this->load->view("vw_showerror");
+        }
+        
     }
     //from vw_updatearticles
     public function postUpdate(){
-        $flag=$this->Mdl_articles->updateOneArticle();
-        $this->sendJson(array("message"=>$flag["message"],"result"=>$flag["result"]));
+        $articleid=$this->input->post('aid');
+        if($this->Mdl_articles->canUserEditThisArticle($articleid)){
+            $flag=$this->Mdl_articles->updateOneArticle();
+            $this->sendJson(array("message"=>$flag["message"],"result"=>$flag["result"]));  
+        }else{
+            $this->sendJson(array("message"=>"You can't edit this article","result"=>false));  
+        }
     }
 
     public function deletearticle($articleid){
