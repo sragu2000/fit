@@ -49,6 +49,21 @@ class Mdl_user extends CI_Model {
         $val=$this->db->query("select * from usersfit where fituserindexnum='$ind'")->first_row()->firuserrole;
         return $val;
     }
+    public function changeMyPassword($oldPassword,$newPassword){
+        $newPassword=md5($newPassword);
+        $user=$this->session->userdata('useroffit');
+        $oldpassFromDb=$this->db->query("select * from usersfit where fituserindexnum='$user'")->first_row()->fituserpassword;
+        if($oldpassFromDb==md5($oldPassword)){
+            if($this->db->query("UPDATE usersfit SET fituserpassword='$newPassword' where fituserindexnum='$user'")){
+                return array("message"=>"Password Changed Successfully","result"=>true);
+            }else{
+                return array("message"=>"Can't Change the Password.. Try again Later","result"=>true);
+            }
+            
+        }else{
+            return array("message"=>"Enter Correct Password","result"=>false);
+        }
+    }
 
     public function sessionCheck(){
         $session_data = $this->session->get_userdata();

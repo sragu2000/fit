@@ -36,6 +36,17 @@ class Dashboard extends CI_Controller {
 		redirect("authenticate");
 	}
 
+	public function changePassword(){
+		$oldPassword = $this->input->post("oldpass");
+		$newPassword = $this->input->post("newpass");
+		$flag=$this->Mdl_user->changeMyPassword($oldPassword,$newPassword);
+		$this->sendJson(array("message" =>$flag["message"], "result" => $flag["result"]));
+	}
+
+	private function sendJson($data) {
+	  $this->output->set_header('Content-Type: application/json; charset=utf-8')->set_output(json_encode($data));
+	}
+
 	public function viewuserdetails(){
 		$this->load->view("vw_header");
 		$this->load->view("vw_navbar");
