@@ -54,13 +54,18 @@ class Articles extends CI_Controller {
     }
 
     public function deletearticle($articleid){
-        $flag=$this->Mdl_articles->deleteOneArticle($articleid);
-        if($flag){
-            echo "<script>alert('Deleted successfully');</script>";
+        if($this->Mdl_articles->canUserEditThisArticle($articleid)){
+            $flag=$this->Mdl_articles->deleteOneArticle($articleid);
+            if($flag){
+                echo "<script>alert('Deleted successfully');</script>";
+            }else{
+                echo "<script>alert('Error Try Again');</script>";
+            }
+            redirect("view/myarticles");
         }else{
-            echo "<script>alert('Error Try Again');</script>";
+            echo "You cant Delete this article...";
         }
-        redirect("view/myarticles");
+       
     }
 
     private function sendJson($data) {
