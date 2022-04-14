@@ -38,8 +38,9 @@
             </div>  
         </div>
         </form><br>
+    <a href="<?php echo base_url('authenticate/forgotpassword');?>" id="forgot" class="btn btn-outline-warning btn-lg form-control">Forgot Password ? </a> <br><br>
         <a href="<?php echo base_url('authenticate/signup');?>" class="btn form-control btn-lg btn-outline-primary">Signup here</a>
-        <!-- Login End -->
+        <!-- Login End --><br><br>
     </div>
     <script>
         $(document).on("submit","#loginForm",(e)=>{

@@ -22,6 +22,14 @@ class Mdl_user extends CI_Model {
             }
         }
     }
+    public function restPass($curPass,$email){
+        $curPass=md5($curPass);
+        if($this->db->query("UPDATE usersfit SET fituserpassword='$curPass' WHERE fituseremail='$email'")){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function checkuser(){
         $indNum=$this->input->post('indnum');
 		$password=md5($this->input->post('password'));
@@ -49,6 +57,15 @@ class Mdl_user extends CI_Model {
         $val=$this->db->query("select * from usersfit where fituserindexnum='$ind'")->first_row()->firuserrole;
         return $val;
     }
+
+    public function is_a_person_user($email){
+        if($this->db->query("select * from usersfit where fituseremail='$email'")->num_rows()>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function changeMyPassword($oldPassword,$newPassword){
         $newPassword=md5($newPassword);
         $user=$this->session->userdata('useroffit');
