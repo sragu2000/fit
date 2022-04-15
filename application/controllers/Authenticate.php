@@ -32,7 +32,8 @@ class Authenticate extends CI_Controller {
 			$this->load->view("vw_header");
 			$this->load->view('vw_resetreq');
 		}else{
-			echo "error !";
+			$this->load->view("vw_header");
+			echo "<div class='alert alert-danger'>Password already changed... Link expired !</div>";
 		}
 	}
 
