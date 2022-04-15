@@ -58,8 +58,8 @@
                     return response.json();            
                 }
                 else {
-                    alert('Backend Error..!');
-                    console.log(response.text());
+                    alert('Backend Error..!');window.location.reload();
+                   
                 }
             })
             .then(data => {
@@ -83,6 +83,7 @@
             .catch((e) => {
                 console.log(e);
                 alert("Reloading");
+                window.location.reload();
             });
         })
     </script>

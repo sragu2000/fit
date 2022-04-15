@@ -1,11 +1,11 @@
 <br>
 <div class="container">
     <form id="submitArticle" method="post">
-        <select class="form-control" id="course">
+        <select class="form-control" id="course" required>
             <option value="" disabled selected>Select Module here..</option>
         </select>
         <p></p>
-        <input type="text" class="form-control" id="heading" placeholder="Heading"><p></p>
+        <input type="text" required class="form-control" id="heading" placeholder="Heading"><p></p>
         
         <p></p> 
 
