@@ -34,6 +34,11 @@
                     `;
                     $("#myarticles").append(htmlText);
                 });
+            }else{
+                var htmlText=`
+                    <div class="alert alert-danger">No articles found<br>If you want, you can Write some articles under : <a href="<?php echo base_url('module/addarticles') ?>">Add Articles</a></div>  
+                    `;
+                    $("#myarticles").append(htmlText);
             }
         })
         .catch(() => {console.log("Network connection error");});
