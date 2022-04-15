@@ -22,14 +22,32 @@ class Mdl_user extends CI_Model {
             }
         }
     }
-    public function restPass($curPass,$email){
-        $curPass=md5($curPass);
-        if($this->db->query("UPDATE usersfit SET fituserpassword='$curPass' WHERE fituseremail='$email'")){
+    public function resetPass($resetText,$email){
+        if($this->db->query("UPDATE usersfit SET resetText='$resetText' WHERE fituseremail='$email'")){
             return true;
         }else{
             return false;
         }
     }
+    public function requestToChangePasswordByUserLink($newpass){
+        $newpass=md5($newpass);
+        $email=$_SESSION['useremailoffit'];
+        if($this->db->query("UPDATE usersfit SET fituserpassword='$newpass' WHERE fituseremail='$email'")){
+            $this->db->query("UPDATE usersfit SET resetText='' WHERE fituseremail='$email'");
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function chkUserOfResetText($resetText){
+        $query=$this->db->query("SELECT * FROM usersfit WHERE resetText='$resetText'");
+        if($query->num_rows()==1){
+            return array("email"=>$query->first_row()->fituseremail,"result"=>true);
+        }else{
+            return array("email"=>"","result"=>false);
+        }
+    }
+
     public function checkuser(){
         $indNum=$this->input->post('indnum');
 		$password=md5($this->input->post('password'));

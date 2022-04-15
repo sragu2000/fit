@@ -8,6 +8,7 @@
         </button>
     </form> <br>
     <div id="messageid" class="alert alert-info"></div>
+
 </div>
 <script>
     $(document).on("submit", "#forgotpass", (e) => {
@@ -30,7 +31,11 @@
                 }
             })
             .then(data => {
+                alert(data.message);
                 document.getElementById("messageid").innerHTML = data.message
+                if(data.result==true){
+                    location.href="<?php echo base_url('authenticate'); ?>"
+                }
             })
             .catch(() => {
                 console.log("Network connection error");

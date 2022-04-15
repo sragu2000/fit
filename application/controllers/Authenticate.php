@@ -23,6 +23,29 @@ class Authenticate extends CI_Controller {
 		return $randomString;
 	}
 
+	public function resetrequest($resetText){
+		$user=$this->Mdl_user->chkUserOfResetText($resetText);
+		//return array("email"=>$query->first_row()->fituseremail,"result"=>true);
+		if($user["result"]==true){
+			$userEmail=$user["email"];
+			$this->session->set_userdata("useremailoffit",$userEmail);
+			$this->load->view("vw_header");
+			$this->load->view('vw_resetreq');
+		}else{
+			echo "error !";
+		}
+	}
+
+	public function submitPass(){
+		$newpass = $this->input->post('newpassword');
+		if($this->Mdl_user->requestToChangePasswordByUserLink($newpass)){
+			$this->sendJson(array("message" =>"Password Reset Success","result"=>true));
+			$this->session->unset_userdata("useremailoffit");
+		}else{
+			$this->sendJson(array("message" =>"Password Reset Failed","result"=>false));
+		}
+	}
+
 	public function resetpass(){
 		$email=$this->input->post('email');
 		if($this->Mdl_user->is_a_person_user($email)){
@@ -37,9 +60,10 @@ class Authenticate extends CI_Controller {
 			$this->email->from('fit.epizy@gmail.com', 'FIT ADMIN');
 			$this->email->to($email);
 			$this->email->subject('Password Reset');
-			$curPass=$this->getName(10);
-			if($this->Mdl_user->restPass($curPass,$email)){
-				$this->email->message("This is your current password Login and Change : $curPass ");
+			$resetLink=md5($email).md5($this->getName(20));
+			$fullUrl=base_url('authenticate/resetrequest/').$resetLink;
+			if($this->Mdl_user->resetPass($resetLink,$email)){
+				$this->email->message("Change your password here: $fullUrl");
 				if($this->email->send()){
 					$this->sendJson(array("message" =>"Password reset mail has been sent successfully","result"=>true));
 				}else{
