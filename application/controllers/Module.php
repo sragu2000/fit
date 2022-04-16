@@ -23,7 +23,7 @@ class Module extends CI_Controller {
 
     //call from addarticle view
     public function submitArticle(){
-        $flag=$this->Mdl_courses->addArticles();
+		$flag=$this->Mdl_courses->addArticles();
         $this->sendJson(array("message"=>$flag["message"],"result"=>$flag["result"]));
     }
 

@@ -1,19 +1,19 @@
 <br>
 <div class="container">
     <form id="submitArticle" method="post">
-        <select class="form-control" id="course" required>
+        <select class="form-control" id="course" required name="coursename">
             <option value="" disabled selected>Select Module here..</option>
         </select>
         <p></p>
-        <input type="text" required class="form-control" id="heading" placeholder="Heading"><p></p>
+        <input type="text"  required class="form-control" id="heading" placeholder="Heading" name="headingname"><p></p>
         
         <p></p> 
 
         <div id="toolbar"></div>
-        <div id="editor" style="height:375px;"></div>
+        <div id="editor" style="height:375px;" name="articletext"></div>
         <p></p>
-        <input type="submit" class="btn btn-lg- btn-outline-success form-control"><p></p>
-        <input type="reset" class="btn btn-lg- btn-outline-warning form-control">
+        <input type="submit" class="btn btn-lg btn-outline-success form-control"><p></p>
+        <input type="reset" class="btn btn-lg btn-outline-warning form-control"><p></p>
     </form>
 </div>
 <script>
@@ -31,6 +31,7 @@
         e.preventDefault();
         var toServer=new FormData();
         toServer.append('heading',$("#heading").val());
+        //console.log(($("#heading").val()).length);
         toServer.append('module',$("#course").val());
         toServer.append('articletext',JSON.stringify(quill.getContents()));
         fetch("<?php echo base_url('module/submitarticle');?>",{method:'POST',body: toServer,mode: 'no-cors',cache: 'no-cache'})
