@@ -11,7 +11,6 @@ img {
 </div>
 <script>
     $.getJSON("<?php echo base_url('articles/postRead/').$articleid;?>", function(data) {
-        console.log(data);
         if(data.length > 0) {
             data.forEach(function(item){
                 var htmlText=`

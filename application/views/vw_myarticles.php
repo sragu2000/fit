@@ -16,7 +16,7 @@
         })
         .then(data => {
             if (data.length>0) {
-                console.log(data);
+
                 data.forEach(function(item){
                     
                     var htmlText=`
