@@ -39,11 +39,20 @@ class Mdl_articles extends CI_Model {
         $arr["articleheading"]=$this->input->post('heading');
         $arr["articletext"]=$this->input->post('articletext');
         $aid=$this->input->post('aid');
-        $this->db->where('articleid',$aid);
-        if($this->db->update('fitarticles',$arr)){
-            return array("message"=>"Update Success","result"=>true);
+        $user=$this->session->userdata('useroffit');
+        if($this->db->query("select * from fitarticles where articleid='$aid'")->first_row()->authorid == $user){
+            if(!(empty($arr["articleheading"])||empty($arr["articletext"]))){
+                $this->db->where('articleid',$aid);
+                if($this->db->update('fitarticles',$arr)){
+                    return array("message"=>"Update Success","result"=>true);
+                }else{
+                    return array("message"=>"Update Failed","result"=>false);
+                }
+            }else{
+                return array("message"=>"Empty Article","result"=>false);
+            }
         }else{
-            return array("message"=>"Update Failed","result"=>false);
+            return array("message"=>"You can't edit this article...","result"=>false);
         }
     }
 }
