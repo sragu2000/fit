@@ -21,7 +21,7 @@
                     
                     var htmlText=`
                     <div class="row">
-                        <div class="col-sm-6 pt-2">${item.heading}<br>${item.date}</div>
+                        <div class="col-sm-6 pt-2">${item.heading}<br>${item.date} | @ ${item.mid}- ${item.mname}</div>
                         <div class="col-sm-2 pt-2">
                             <a href="<?php echo base_url('articles/readarticle/');?>${item.id}" 
                             class="btn btn-outline-primary form-control">

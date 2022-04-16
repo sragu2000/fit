@@ -17,6 +17,7 @@ img {
                 var htmlText=`
                 <h2>${item.heading}</h2>
                 <h4>${item.date}</h4>
+                <h5>Under Module: ${item.mid} - ${item.mname}</h5>
                 <hr width="100%">
                 `;
                 $("#quesdet").append(htmlText);

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Mdl_articles extends CI_Model {
     public function showMyArticles(){
         $authorid=$this->session->userdata('useroffit');
-        $flag=$this->db->query("SELECT articleid as id, adate as date,articleheading as heading,articletext as lesson FROM fitarticles WHERE authorid='$authorid'")->result();
+        $flag=$this->db->query("SELECT articleid as id, fitarticles.moduleid as mid, fitmodules.modulename as mname, adate as date, articleheading as heading, articletext as lesson FROM fitarticles,fitmodules WHERE authorid='$authorid' and fitmodules.moduleid=fitarticles.moduleid")->result();
         return json_encode($flag,true);
     }
 
@@ -18,7 +18,7 @@ class Mdl_articles extends CI_Model {
     }
 
     public function getOneArticle($aid){
-        $res=$this->db->query("select articleid as id, adate as date, articleheading as heading, articletext as lesson from fitarticles where articleid='$aid'")->result();
+        $res=$this->db->query("select articleid as id, fitarticles.moduleid as mid, fitmodules.modulename as mname, adate as date, articleheading as heading, articletext as lesson from fitarticles,fitmodules where articleid='$aid' and fitarticles.moduleid=fitmodules.moduleid")->result();
         return json_encode($res,true);        
     }
 
