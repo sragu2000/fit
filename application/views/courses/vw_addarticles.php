@@ -64,7 +64,7 @@
         [ 'blockquote','code-block'],
         [{'list':'ordered'},{'list':'bullet'}],
         [{'script':'sub'},{'script':'super'}],
-        ['link','formula','image'],
+        ['link','formula','image','video'],
         [{'color':[]},{'background':[]}],
         [{'font':[]}],
         [{'align':[]}],
