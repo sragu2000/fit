@@ -27,7 +27,7 @@ class Articles extends CI_Controller {
         $arr["articleid"]=$articleid;
         $this->load->view("vw_readarticles",$arr); 
     }
-    public function postRead($articleid){
+    public function postRead($articleid=NULL){
         echo $this->Mdl_articles->getOneArticle($articleid);
     }
     public function editarticle($articleid=NULL){
