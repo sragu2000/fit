@@ -15,7 +15,9 @@
                 var htmlText=`
                     <div class="card">
                         <div class="card-header">
-                            <h3>${item.heading}</h3><i class="fa-solid fa-file-pen"></i> ${item.username}
+                            <h3>${item.heading}</h3>
+                            <i class="fa-solid fa-file-pen"></i>
+                            <a href="<?php echo base_url('dashboard/showuser/'); ?>${item.userid}">${item.username}</a>
                         </div>
                         <div class="card-body">
                             <a href="${textURL}" class="btn form-control btn-outline-dark" target="_blank"><i class="fa-solid fa-book-open"></i> &nbsp; Read More..</a>

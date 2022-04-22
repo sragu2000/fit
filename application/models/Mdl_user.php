@@ -2,7 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mdl_user extends CI_Model {
-
+    public function viewAnotherProfile($userid){
+        $v1=$this->db->query("select fitusername as name, fitusercourse as course from usersfit where fituserindexnum='$userid'")->result();
+        $data["userdetails"]=$v1;
+        $v2=$this->db->query("select articleid as aid, articleheading as heading, moduleid as module from fitarticles where authorid='$userid'")->result();
+        $data["articles"]=$v2;
+        return json_encode($data,true);
+    }
     public function addUser(){
         $arr["fitusername"]=$this->input->post('username');
         $arr["firuserrole"]="fitpageuser";

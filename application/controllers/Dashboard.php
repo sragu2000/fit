@@ -15,6 +15,15 @@ class Dashboard extends CI_Controller {
 			redirect("authenticate/login");
 		}
 	}
+	public function viewprofile($userid=NULL){
+		echo $this->Mdl_user->viewAnotherProfile($userid);
+	}
+	public function showUser($userid=NULL){
+		$this->load->view("vw_header");
+		$this->load->view("vw_navbar");
+		$data["userid"]=$userid;
+		$this->load->view("vw_showuser.php",$data);
+	}
 	public function index()
 	{
 		$role=$this->Mdl_user->getUserRole();
