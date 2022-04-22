@@ -105,6 +105,8 @@ class Authenticate extends CI_Controller {
 	public function signupuser(){
 		$flag=$this->Mdl_user->addUser();
 		$this->sendJson(array("message"=>$flag["message"], "result"=>$flag["result"]));
+		$this->sendJson(array("message"=>$flag["message"],"result"=>$flag["result"],"url"=>$this->session->userdata('myurl')));
+		$this->session->unset_userdata("myurl");
 	}
 	private function sendJson($data) {
 	  $this->output->set_header('Content-Type: application/json; charset=utf-8')->set_output(json_encode($data));

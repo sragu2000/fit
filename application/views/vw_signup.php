@@ -107,7 +107,11 @@
             .then(data => {
                 if(data.result==true){
                     alert("Signup Success. You can Login Now");
-                    location.href="<?php echo base_url('authenticate'); ?>"
+                    if(data.url==null){
+                        location.href="<?php echo base_url('dashboard'); ?>";
+                    }else{
+                        location.href=data.url;
+                    }
                 }else{
                     alert(data.message);
                 }
