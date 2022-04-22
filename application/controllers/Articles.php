@@ -21,7 +21,7 @@ class Articles extends CI_Controller {
         echo $this->Mdl_articles->showMyArticles();
     }
     //read Articles
-    public function readArticle($articleid){
+    public function readArticle($articleid=NULL){
         $this->load->view("vw_header");
         $this->load->view("vw_navbar");
         $arr["articleid"]=$articleid;
@@ -30,7 +30,7 @@ class Articles extends CI_Controller {
     public function postRead($articleid){
         echo $this->Mdl_articles->getOneArticle($articleid);
     }
-    public function editarticle($articleid){
+    public function editarticle($articleid=NULL){
         $this->load->view("vw_header");
         $this->load->view("vw_navbar");
         $canUserEdit=$this->Mdl_articles->canUserEditThisArticle($articleid);
@@ -53,7 +53,7 @@ class Articles extends CI_Controller {
         }
     }
 
-    public function deletearticle($articleid){
+    public function deletearticle($articleid=NULL){
         if($this->Mdl_articles->canUserEditThisArticle($articleid)){
             $flag=$this->Mdl_articles->deleteOneArticle($articleid);
             if($flag){
@@ -68,11 +68,11 @@ class Articles extends CI_Controller {
        
     }
 
-    private function sendJson($data) {
+    private function sendJson($data=NULL) {
         $this->output->set_header('Content-Type: application/json; charset=utf-8')->set_output(json_encode($data));
     }
 
-    public function fetchArticle($num){
+    public function fetchArticle($num=NULL){
         echo $this->Mdl_articles->getOneArticle($num);;
     }
 }

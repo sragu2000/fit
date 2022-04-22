@@ -54,7 +54,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function editModule($oldmoduleid, $modulename, $moduleid, $forcourse){
+	public function editModule($oldmoduleid=NULL, $modulename=NULL, $moduleid=NULL, $forcourse=NULL){
 		if(!(empty(trim($oldmoduleid)) && empty(trim($modulename)) && empty(trim($moduleid)) && empty(trim($forcourse)))){
 			$flag=$this->Mdl_admin->editThisModule(urldecode($oldmoduleid), urldecode($modulename), urldecode($moduleid), urldecode($forcourse));
 			if($flag){

@@ -23,7 +23,7 @@ class Authenticate extends CI_Controller {
 		return $randomString;
 	}
 
-	public function resetrequest($resetText){
+	public function resetrequest($resetText=NULL){
 		$user=$this->Mdl_user->chkUserOfResetText($resetText);
 		//return array("email"=>$query->first_row()->fituseremail,"result"=>true);
 		if($user["result"]==true){

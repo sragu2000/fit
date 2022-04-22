@@ -31,7 +31,7 @@ class Module extends CI_Controller {
         $this->output->set_header('Content-Type: application/json; charset=utf-8')->set_output(json_encode($data));
     }
 
-    public function showArticles($moduleid){
+    public function showArticles($moduleid=NULL){
         echo $this->Mdl_courses->mdlshowArticle($moduleid);
     }
 }
