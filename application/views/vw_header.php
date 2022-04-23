@@ -32,7 +32,7 @@
     <!-- Core build with no theme, formatting, non-essential modules -->
     <!-- <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet">
     <script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script> -->
-    <script src="<?php echo base_url('dark/darkreader.min.js'); ?>"></script>
+    <!-- <script src="<?php //echo base_url('dark/darkreader.min.js'); ?>"></script> -->
 </head>
 
 <body>

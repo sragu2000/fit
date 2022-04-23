@@ -30,10 +30,13 @@
 
       <a class="nav-link active text-danger" href="<?php echo base_url('dashboard/logout'); ?>">
         <i class="fas fa-power-off"></i> &nbsp;Logout</a>
-      <button class="btn" id="theme"><i class="fa-solid fa-moon"></i></button>
-      <script>
+      <!-- <button class="btn" id="theme"><i class="fa-solid fa-moon"></i></button> -->
+      <!-- <script>
+        localStorage.setItem("themeVal", "light");
         $(document).on("click","#theme",()=>{
-          if(! DarkReader.isEnabled()){
+          if(! DarkReader.isEnabled() || localStorage.getItem("themeVal")=="dark"){
+            localStorage.setItem("themeVal", "dark");
+            DarkReader.setFetchMethod(window.fetch)
             DarkReader.enable({
               brightness: 100,
               contrast: 90,
@@ -47,7 +50,7 @@
             $("#theme").append("<i class='fa-solid fa-moon'>");
           }
         })
-      </script>
+      </script> -->
     </div>
   </div>
 </nav>
