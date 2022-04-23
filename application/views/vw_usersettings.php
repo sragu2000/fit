@@ -1,5 +1,5 @@
 <div class="container">
-    <br><hr width="100%">
+    <hr width="100%">
     <h2> User Details</h2>
     <hr width="100%">
     Name : <input type="text" disabled id="name" class="form-control"><p></p>

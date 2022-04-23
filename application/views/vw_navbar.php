@@ -1,6 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border border-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<?php echo base_url("dashboard") ?>"><i class="fas fa-home"></i>&nbsp;Dashboard</a>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="<?php echo base_url("dashboard") ?>">
+        <img src="<?php echo base_url('images/logo.png') ?>" width="30" height="30" alt="">
+      </a>
+    </nav>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,11 +25,12 @@
           <a class="nav-link active" href="<?php echo base_url('dashboard/viewuserdetails'); ?>">
             <i class="fa-solid fa-gear"></i></i></i>&nbsp;My Account</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active text-danger" href="<?php echo base_url('dashboard/logout'); ?>">
-            <i class="fas fa-power-off"></i> &nbsp;Logout</a>
-        </li>
+
       </ul>
+
+      <a class="nav-link active text-danger" href="<?php echo base_url('dashboard/logout'); ?>">
+        <i class="fas fa-power-off"></i> &nbsp;Logout</a>
+
     </div>
   </div>
 </nav>

@@ -1,13 +1,13 @@
 <br>
 <div class="container">
-    <h3><u>IT and IT&M</u></h3>
-    <div class="row" id="both"></div>
+    <h3>IT and IT&M</h3>
+    <div class="row" id="both"><hr width="100%"></div>
     <br>
     <h3><u>IT</u></h3>
-    <div class="row" id="it"></div>
+    <div class="row" id="it"><hr width="100%"></div>
     <br>
     <h3><u>IT&M</u></h3>
-    <div class="row" id="itm"></div>
+    <div class="row" id="itm"><hr width="100%"></div>
     <br>
 </div>
 <script>
@@ -19,6 +19,7 @@
                         <i class="fa-solid fa-arrow-up-right-from-square"></i> ${item.moduleid} : ${item.modulename}
                         </a>
                     </h5>
+                    <hr width="100%">
             `;
             if((item.forcourse).toLowerCase()==("BOTH").toLowerCase()){
                 $("#both").append(htmlText);
