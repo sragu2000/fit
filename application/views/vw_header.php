@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIT</title>
+    <title><?php if(isset($title)){echo $title;} else {echo "FIT";} ?></title>
     <!-- Jquery CDN -->
     <script src="<?php echo base_url('jquery/jquery-3.6.0.min.js');?>"></script>
     <!-- Bootstrap CDN -->

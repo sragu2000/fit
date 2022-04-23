@@ -19,13 +19,13 @@ class Dashboard extends CI_Controller {
 		echo $this->Mdl_user->viewAnotherProfile($userid);
 	}
 	public function showUser($userid=NULL){
-		$this->load->view("vw_header");
+		$this->load->view("vw_header",array("title"=>$this->Mdl_user->getUserName($userid)));
 		$this->load->view("vw_navbar");
 		$data["userid"]=$userid;
 		$this->load->view("vw_showuser.php",$data);
 	}
 	public function index(){
-		$this->load->view("vw_header");
+		$this->load->view("vw_header",array("title"=>"Dashboard"));
 		$this->load->view("vw_navbar");
 		$this->load->view('vw_dashboard');
 	}
@@ -51,7 +51,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function viewuserdetails(){
-		$this->load->view("vw_header");
+		$this->load->view("vw_header",array("title"=>"My Account"));
 		$this->load->view("vw_navbar");
 		$role=$this->Mdl_user->getUserRole();
 		if($role=="fitpageadmin"){

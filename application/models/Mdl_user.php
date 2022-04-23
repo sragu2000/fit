@@ -9,6 +9,14 @@ class Mdl_user extends CI_Model {
         $data["articles"]=$v2;
         return json_encode($data,true);
     }
+    public function getUserName($userid){
+        $sqlquery=$this->db->query("select * from usersfit where fituserindexnum='$userid'");
+        if($sqlquery->num_rows()>0){
+            return $sqlquery->first_row()->fitusername;
+        }else{
+            return "User Not Found";
+        }
+    }
     public function addUser(){
         $arr["fitusername"]=$this->input->post('username');
         $arr["firuserrole"]="fitpageuser";

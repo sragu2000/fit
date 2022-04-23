@@ -21,17 +21,17 @@ class Admin extends CI_Controller {
         }
 	}
 	public function manageModule(){
-		$this->load->view("vw_header");
+		$this->load->view("vw_header",array("title"=>"Manage Modules"));
         $this->load->view("vw_navbar");
         $this->load->view("vw_modules");
 	}
     public function index(){
-        $this->load->view("vw_header");
+        $this->load->view("vw_header",array("title"=>"Admin"));
         $this->load->view("vw_navbar");
         $this->load->view("vw_admin");
     }
 	public function promoteUser(){
-		$this->load->view("vw_header");
+		$this->load->view("vw_header",array("title"=>"Promote User"));
 		$this->load->view("vw_navbar");
 		$this->load->view("adminarea/vw_promoteuser");
 	}

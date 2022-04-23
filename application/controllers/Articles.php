@@ -22,7 +22,7 @@ class Articles extends CI_Controller {
     }
     //read Articles
     public function readArticle($articleid=NULL){
-        $this->load->view("vw_header");
+        $this->load->view("vw_header",array("title"=>$this->Mdl_articles->getArticleTitle($articleid)));
         $this->load->view("vw_navbar");
         $arr["articleid"]=$articleid;
         $this->load->view("vw_readarticles",$arr); 
@@ -31,7 +31,7 @@ class Articles extends CI_Controller {
         echo $this->Mdl_articles->getOneArticle($articleid);
     }
     public function editarticle($articleid=NULL){
-        $this->load->view("vw_header");
+        $this->load->view("vw_header",array("title"=>"Edit : ".$this->Mdl_articles->getArticleTitle($articleid)));
         $this->load->view("vw_navbar");
         $canUserEdit=$this->Mdl_articles->canUserEditThisArticle($articleid);
         if($canUserEdit){
@@ -40,7 +40,6 @@ class Articles extends CI_Controller {
         }else{
             $this->load->view("vw_showerror");
         }
-        
     }
     //from vw_updatearticles
     public function postUpdate(){

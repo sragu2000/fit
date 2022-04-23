@@ -29,10 +29,10 @@ class Authenticate extends CI_Controller {
 		if($user["result"]==true){
 			$userEmail=$user["email"];
 			$this->session->set_userdata("useremailoffit",$userEmail);
-			$this->load->view("vw_header");
+			$this->load->view("vw_header",array("title"=>"Reset"));
 			$this->load->view('vw_resetreq');
 		}else{
-			$this->load->view("vw_header");
+			$this->load->view("vw_header",array("title"=>"Expired"));
 			echo "<div class='alert alert-danger'>Password already changed... Link expired !</div>";
 		}
 	}
@@ -78,7 +78,7 @@ class Authenticate extends CI_Controller {
 		}
 	}
 	public function forgotpassword(){
-		$this->load->view("vw_header");
+		$this->load->view("vw_header",array("title"=>"Forgot Password"));
 		$this->load->view("vw_forgotpassword");
 	}
 	public function login()

@@ -16,6 +16,22 @@ class Mdl_articles extends CI_Model {
             return false;
         }
     }
+    public function getArticleTitle($articleid){
+        $sqlquery=$this->db->query("select * from fitarticles where articleid='$articleid'");
+        if($sqlquery->num_rows()>0){
+            return $sqlquery->first_row()->articleheading;
+        }else{
+            return "Article Not Found";
+        }
+    }
+    public function getModuleTitle($modnum){
+        $sqlquery=$this->db->query("select * from fitmodules where moduleid='$modnum'");
+        if($sqlquery->num_rows()>0){
+            return $sqlquery->first_row()->modulename;
+        }else{
+            return "Module Not Found";
+        }
+    }
 
     public function getOneArticle($aid){
         $res=$this->db->query("select articleid as id, fitarticles.moduleid as mid, fitmodules.modulename as mname, adate as date, articleheading as heading, articletext as lesson from fitarticles,fitmodules where articleid='$aid' and fitarticles.moduleid=fitmodules.moduleid")->result();

@@ -16,7 +16,7 @@ class Module extends CI_Controller {
 		}
 	}
 	public function addArticles(){
-		$this->load->view("vw_header");
+		$this->load->view("vw_header",array("title"=>"Add Articles"));
 		$this->load->view("vw_navbar");
 		$this->load->view("courses/vw_addarticles");
 	}
