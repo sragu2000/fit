@@ -30,7 +30,24 @@
 
       <a class="nav-link active text-danger" href="<?php echo base_url('dashboard/logout'); ?>">
         <i class="fas fa-power-off"></i> &nbsp;Logout</a>
-
+      <button class="btn" id="theme"><i class="fa-solid fa-moon"></i></button>
+      <script>
+        $(document).on("click","#theme",()=>{
+          if(! DarkReader.isEnabled()){
+            DarkReader.enable({
+              brightness: 100,
+              contrast: 90,
+              sepia: 10
+            });
+            document.getElementById("theme").innerHTML="";
+            $("#theme").append("<i class='fa-regular fa-sun'>");
+          }else{
+            DarkReader.disable();
+            document.getElementById("theme").innerHTML="";
+            $("#theme").append("<i class='fa-solid fa-moon'>");
+          }
+        })
+      </script>
     </div>
   </div>
 </nav>
