@@ -9,7 +9,7 @@ class Mdl_courses extends CI_Model {
 
     }
     public function mdlshowArticle($modid){
-        $flag=$this->db->query("SELECT authorid as userid, usersfit.fitusername as username, articleid as aid, adate as date,articleheading as heading,articletext as lesson FROM fitarticles,usersfit WHERE moduleid='$modid' and usersfit.fituserindexnum=fitarticles.authorid")->result();
+        $flag=$this->db->query("SELECT authorid as userid, usersfit.fitusername as username, articleid as aid, adate as date,articleheading as heading,articletext as lesson FROM fitarticles,usersfit WHERE moduleid='$modid' and usersfit.fituserindexnum=fitarticles.authorid ORDER BY articleid DESC")->result();
         return json_encode($flag,true);
     }
     public function addArticles(){

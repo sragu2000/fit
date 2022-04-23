@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Mdl_articles extends CI_Model {
     public function showMyArticles(){
         $authorid=$this->session->userdata('useroffit');
-        $flag=$this->db->query("SELECT articleid as id, fitarticles.moduleid as mid, fitmodules.modulename as mname, adate as date, articleheading as heading, articletext as lesson FROM fitarticles,fitmodules WHERE authorid='$authorid' and fitmodules.moduleid=fitarticles.moduleid")->result();
+        $flag=$this->db->query("SELECT articleid as id, fitarticles.moduleid as mid, fitmodules.modulename as mname, adate as date, articleheading as heading, articletext as lesson FROM fitarticles,fitmodules WHERE authorid='$authorid' and fitmodules.moduleid=fitarticles.moduleid ORDER BY articleid DESC ")->result();
         return json_encode($flag,true);
     }
 
