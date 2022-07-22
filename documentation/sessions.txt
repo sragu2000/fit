@@ -1,0 +1,6 @@
+$this->session->set_userdata("useremailoffit",$userEmail);
+
+$this->session->set_userdata("useroffit",$this->input->post('indnum'));
+
+when click user enter into the link without signin, it will save requested website link
+$this->session->set_userdata('myurl',$pageUrl);

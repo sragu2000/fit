@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------
+FIT LMS Application - Documentation
+-------------------------------------------------------------------------
+Address : localhost/fit
+default_controller :authenticate()
+username:205080K
+password:admin123
+mail:ragurajsivanantham@gmail.com

@@ -1,0 +1,154 @@
+-------------------------------------------------------------------------
+Controllers
+-------------------------------------------------------------------------
+Admin.php
+    manageModule()
+        view function
+        vw_modules
+        to create edit delete modules
+        http://localhost/fit/admin/manageModule
+    index()
+        view function
+        vw_admin
+        will show admin panel
+        http://localhost/fit/admin/
+    promoteUser()
+        view function
+        adminarea/vw_promoteuser
+        promote or demote user
+        http://localhost/fit/admin/promoteUser
+    listuser()
+        JSON return function
+        Mdl_admin->listuserprofiles() as JSON
+        list all users, username, indexnum not mail
+        http://localhost/fit/admin/listuser
+    promote()
+        model function
+        Mdl_admin->promoteme
+        update user type status in database
+            fitpageadmin
+            fitpageuser
+    deleteModule($moduleId)
+        model function 
+        Mdl_admin->deleteThisModule($moduleId)
+        send delete request to database
+    editModule($oldmoduleid=NULL, $modulename=NULL, $moduleid=NULL, $forcourse=NULL)
+        model function
+        Mdl_admin->editThisModule
+        send edit module request to database
+    createModule($modulename, $moduleid, $forcourse)
+        model function
+        Mdl_admin->createThisModule
+        send create module request to database
+
+Articles.php
+    myarticles()
+        JSON return function 
+        Mdl_articles->showMyArticles()
+        articleid,moduleid,modulename,date,heading,text(lesson)
+        http://localhost/fit/articles/myarticles
+    readArticle($articleid=NULL)
+        view function
+        vw_readarticles
+        http://localhost/fit/articles/readarticle/7
+        show articles to the user
+    postRead($articleid=NULL)
+        JSON return function
+        get article details like
+        [
+            {
+                id: "7",
+                mid: "CM1130",
+                mname: "Elements of Statistics",
+                date: "2022-04-22",
+                heading: "Hello",
+                lesson: "{"ops":[{"insert":"Article\n"}]}"
+            }
+        ]
+        http://localhost/fit/articles/postRead/7
+    editarticle($articleid=NULL)
+        view function 
+        vw_updatearticles or vw_showerror
+        allow user to edit article except module id
+        http://localhost/fit/articles/editarticle/9
+    postUpdate()
+        model function
+        Mdl_articles->updateOneArticle()
+        get updates did by user and update to database
+    deletearticle($articleid=NULL)
+        alert function / view function 
+        allow user to delete articles
+    fetchArticle($num=NULL)
+        same as postread function in articles
+        JSON return function
+        Mdl_articles->getOneArticle($num)
+        get article details like
+        [
+            {
+                id: "7",
+                mid: "CM1130",
+                mname: "Elements of Statistics",
+                date: "2022-04-22",
+                heading: "Hello",
+                lesson: "{"ops":[{"insert":"Article\n"}]}"
+            }
+        ]
+        http://localhost/fit/articles/fetchArticle/7
+
+Authenticate.php
+    getName($n)
+        to generate a random text based on number of chars
+        getName(20) means 20 char random text
+    resetrequest($resetText=NULL)
+        view function 
+        vw_resetreq
+        resetrequest($resetText=NULL) 
+        resetText = generated random text
+        if password already changed view error message
+    submitPass()
+        model function 
+        Mdl_user->requestToChangePasswordByUserLink($newpass)
+        get new password and change 
+    resetpass()
+        model function 
+        handle and update password reset request sent by user
+        mail way
+    forgotpassword()
+        view function 
+        vw_forgotpassword
+        shows forgot password page
+    login()
+        view function 
+        view login page
+    index()
+        view function 
+        view login page
+    signup()
+        view function 
+        view signup page
+    usersignin()
+        model function 
+        validate user signin and create sessions
+    signupuser()
+        model function 
+        handle and validate new user information
+
+Dashboard.php
+    viewprofile($userid=NULL)
+    showUser($userid=NULL)
+    index()
+    getcourses()
+    logout()
+    changePassword()
+    viewuserdetails()
+    getuserprofile()
+    deleteuser()
+
+Module.php
+    addArticles()
+    submitArticle()
+    showArticles($moduleid=NULL)
+
+View.php
+    module($courseId=NULL)
+    myarticles()
