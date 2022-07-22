@@ -1,3 +1,4 @@
+
 <br>
 <style>
 img {
@@ -5,7 +6,7 @@ img {
     height: auto;
 }
 </style>
-<div class="container" id="target">
+<div class="container-sm" id="target">
 <div id="quesdet"></div>
 <div id="editor"></div>
 </div>

@@ -18,14 +18,19 @@
 </div>
 <script>
     $.getJSON("<?php echo base_url('dashboard/getcourses');?>", function(data) {
-        data.forEach(function(item){
-            var htmlText=`
-                <option value="${item.moduleid}">
-                    ${item.moduleid} | ${item.modulename}
-                </option>
-            `;
-            $("#course").append(htmlText);
-        });
+        if(data.length>0){
+            data.forEach(function(item){
+                var htmlText=`
+                    <option value="${item.moduleid}">
+                        ${item.moduleid} | ${item.modulename}
+                    </option>
+                `;
+                $("#course").append(htmlText);
+            });
+        }else{
+            alert("⚠️ERROR⚠️\nNo modules found. Ask admin to add modules.\nThankyou");
+        }
+        
     });
     $(document).on("submit","#submitArticle",(e)=>{
         e.preventDefault();
