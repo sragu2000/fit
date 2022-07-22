@@ -135,20 +135,98 @@ Authenticate.php
 
 Dashboard.php
     viewprofile($userid=NULL)
+        JSON return function
+        Sample Json value
+        {
+            userdetails: [
+                {
+                name: "Raguraj Sivanantham",
+                course: "ITM"
+                }
+                ],
+                articles: [
+                {
+                aid: "10",
+                heading: "sg",
+                module: "IS1020"
+                }
+            ]
+        }
+        http://localhost/fit/dashboard/viewprofile/205080K
     showUser($userid=NULL)
+        view function 
+        show another user details
+        http://localhost/fit/dashboard/showuser/205080k
+        will request viewprofile function get all needed information to show
     index()
+        view function 
+        vw_dashboard
+        http://localhost/fit/dashboard/
+        like home page
     getcourses()
+        JSON return function 
+        show moduleid, modulename, forcourse (IT/ITM/BOTH)
+        http://localhost/fit/dashboard/getcourses
     logout()
+        logout user
+        http://localhost/fit/dashboard/logout
     changePassword()
+        model function 
+        change password from user profile :http://localhost/fit/dashboard/viewuserdetails
+        it will check both old and new password. if old password is correct, it will allow user to change password
     viewuserdetails()
+        view page
+        show user profile page
+        has facility to 
+            delete account
+            update password
+        http://localhost/fit/dashboard/viewuserdetails
     getuserprofile()
+        JSON return function 
+        Sample text
+        [
+            {
+                name: "Raguraj Sivanantham",
+                email: "ragurajsivanantham@gmail.com",
+                indnum: "205080K",
+                course: "ITM"
+            }
+        ]
+        http://localhost/fit/dashboard/getuserprofile
     deleteuser()
+        delete user account
+        accessible from http://localhost/fit/dashboard/viewuserdetails
 
 Module.php
     addArticles()
+        view function 
+        courses/vw_addarticles
+        http://localhost/fit/module/addarticles
+        view add articles page
     submitArticle()
+        model function 
+        Mdl_courses->addArticles()
+        will get user submited article and insert into the database
     showArticles($moduleid=NULL)
+        JSON return function
+        [
+            {
+                userid: "205080K",
+                username: "Raguraj Sivanantham",
+                aid: "10",
+                date: "2022-07-22",
+                heading: "sg",
+                lesson: "{"ops":[{"insert":"sgsgf\n"}]}"
+            }
+        ]
+        http://localhost/fit/module/showarticles/is1020
 
 View.php
     module($courseId=NULL)
+        view function 
+        function call from vw_dashboard
+        http://localhost/fit/view/module/module_IN1400
     myarticles()
+        view function 
+        show all user owned articles
+        http://localhost/fit/view/myarticles
